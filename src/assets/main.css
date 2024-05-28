@@ -1,0 +1,293 @@
+:root {
+  --mainColor: #f05;
+}
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+@font-face {
+  font-family: Rubik;
+  src: url("./font/Rubik-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: Alexandria;
+  src: url("./font/Alexandria-VariableFont_wght.ttf");
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+html[dir="rtl"] {
+  font-family: Alexandria;
+}
+html {
+  font-family: Rubik;
+}
+html[data-mode="dark"] {
+  color-scheme: dark;
+}
+
+.slide {
+  animation-name: slide;
+  animation-duration: 0.2s;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.slide-up {
+  animation-name: slideUp;
+  animation-duration: 0.2s;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+.slide-down {
+  animation-name: slidedown;
+  animation-duration: 0.2s;
+}
+
+@keyframes slidedown {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 0.2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-out {
+  animation-name: fade-out;
+  animation-duration: 0.2s;
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+  from {
+    opacity: 1;
+  }
+}
+.leave {
+  animation-name: leave;
+  animation-duration: 0.15s;
+}
+@keyframes leave {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+.enter {
+  animation-name: enter;
+  animation-duration: 0.2s;
+}
+@keyframes enter {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.wide {
+  animation-name: wide;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+@keyframes wide {
+  from {
+    width: 10%;
+    height: 10%;
+  }
+  to {
+    width: 100%;
+    height: 100%;
+  }
+}
+.narrow {
+  animation-name: narrow;
+  animation-fill-mode: forwards;
+  animation-duration: 0.2s;
+}
+@keyframes narrow {
+  to {
+    /* transform: scale(0.8); */
+    /* opacity: 0; */
+    min-width: 50%;
+    min-height: 30%;
+  }
+  from {
+    /* opacity: 1; */
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+.h-show {
+  animation-name: h-show;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+@keyframes h-show {
+  from {
+    height: 0;
+    min-height: 0;
+    max-height: 0;
+  }
+  to {
+    min-height: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+}
+.h-hide {
+  animation-name: h-hide;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+@keyframes h-hide {
+  to {
+    height: 0;
+    min-height: 0;
+    max-height: 0;
+  }
+  from {
+    min-height: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+}
+.w-show {
+  animation-name: w-show;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+@keyframes w-show {
+  from {
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+  }
+  to {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  [toolTip]::after {
+    padding: 0.125rem 0.25rem;
+  }
+}
+@media (min-width: 768px) {
+  [toolTip]::after {
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+[toolTip] {
+  position: relative;
+}
+[toolTip]:hover::after {
+  visibility: visible;
+  opacity: 1;
+  /* display: block; */
+
+  transition-delay: 0.35s;
+}
+html[data-mode="dark"] *[toolTip]::after {
+  background-color: #333;
+  color: #fff;
+}
+[toolTip]::after {
+  transition: 0.2s;
+
+  position: absolute;
+  content: attr(toolTip);
+  top: 100%;
+  left: 25%;
+  /* ----------------- */
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 0.15rem;
+  color: #222;
+  background-color: #efefef;
+
+  font-size: calc(8px + 0.15vw);
+  box-shadow: 0 0 3px 0 #0003;
+  z-index: 9999;
+  text-wrap: nowrap;
+}
+[toolTipLeft][toolTip]::after {
+  left: 0% !important;
+  top: 0% !important;
+  transform: translate(-125%, 0%) !important;
+}
+[toolTipRight][toolTip]::after {
+  left: 0% !important;
+  top: 0% !important;
+  transform: translate(50%, 0%) !important;
+}
+[toolTipTop][toolTip]::after {
+  left: 0% !important;
+  top: 0% !important;
+  transform: translate(0%, -125%) !important;
+}
+[toolTipBottom][toolTip]::after {
+  left: 0% !important;
+  top: 0% !important;
+  transform: translate(0%, 100%) !important;
+}
+::-webkit-scrollbar {
+  box-shadow: inset 1px 0 5px 0px #0001;
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--mainColor);
+  border-radius: 100vmax;
+}
+
+body[noScroll] {
+  overflow: hidden !important;
+}
