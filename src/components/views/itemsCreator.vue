@@ -12,7 +12,7 @@
             <textarea
               :placeholder="setText('العنوان', 'The title')"
               type="text"
-              maxlength="12"
+              maxlength="20"
               v-model="item.title"
               class="outline-none resize-none bg-transparent text-xs md:text-sm ms-2 w-full text-primary capitalize"
             ></textarea>
